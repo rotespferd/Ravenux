@@ -1,5 +1,5 @@
 export repo_organization := env("GITHUB_REPOSITORY_OWNER", "rotespferd")
-export image_name := env("IMAGE_NAME", "Ravenux")
+export image_name := env("IMAGE_NAME", "ravenux")
 export centos_version := env("CENTOS_VERSION", "stream10")
 export fedora_version := env("CENTOS_VERSION", "41")
 export default_tag := env("DEFAULT_TAG", "latest")
@@ -207,6 +207,7 @@ _build-bib $target_image $tag $type $config: (_rootful_load_image target_image t
       -v $BUILDTMP:/output \
       -v /var/lib/containers/storage:/var/lib/containers/storage \
       "${bib_image}" \
+      --rootfs btrfs \
       ${args} \
       "${target_image}:${tag}"
 
